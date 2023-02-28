@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+
+  web:
+    command: ./wait-for-postgres.sh && run-my-server"
+    environment:
+      - DATABASE_NAME=dbname
+      - DATABASE_USER=dbuser
+      - DATABASE_PASSWORD=dbpass
+      - DATABASE_HOST=dbhost
+    depends_on:
+      - db
+
